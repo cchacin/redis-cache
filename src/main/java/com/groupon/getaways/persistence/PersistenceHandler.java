@@ -21,33 +21,23 @@ public class PersistenceHandler {
     public static Object invoke(EntityManager em, Method method, Object[] args) throws Throwable {
 
         if (method.isAnnotationPresent(NamedQuery.class)) {
-
             return invokeNamedQuery(em, method, args);
-
         }
 
         if (method.isAnnotationPresent(Find.class)) {
-
             return findByPrimaryKey(em, method, args);
-
         }
 
         if (method.isAnnotationPresent(Merge.class)) {
-
             return merge(em, method, args);
-
         }
 
         if (method.isAnnotationPresent(Remove.class)) {
-
             return remove(em, method, args);
-
         }
 
         if (method.isAnnotationPresent(Persist.class)) {
-
             return persist(em, method, args);
-
         }
 
         throw new AbstractMethodError("No handler logic for method: " + method.toString());
@@ -74,7 +64,6 @@ public class PersistenceHandler {
         }
         return em.find(entityClass, primaryKey);
     }
-
 
     public static Object invokeNamedQuery(EntityManager em, Method method, Object[] args) throws Throwable {
         final NamedQuery namedQuery = method.getAnnotation(NamedQuery.class);
