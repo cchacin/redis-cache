@@ -17,28 +17,48 @@
 package com.groupon.getaways.application;
 
 import com.groupon.getaways.entities.Book;
+import com.groupon.getaways.persistence.Find;
+import com.groupon.getaways.persistence.Merge;
+import com.groupon.getaways.persistence.NamedQuery;
+import com.groupon.getaways.persistence.Persist;
+import com.groupon.getaways.persistence.PersistenceHandler;
+import com.groupon.getaways.persistence.QueryParam;
+import com.groupon.getaways.persistence.Remove;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaQuery;
+import java.io.Serializable;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.util.List;
 
 @Stateless
-public class BookService {
+public abstract class BookService implements Serializable, InvocationHandler {
 
     @PersistenceContext(unitName = "book-pu")
-    private EntityManager entityManager;
+    private EntityManager em;
 
-    public void addBook(Book book)
-    {
-      entityManager.persist(book);
-    }
+    @Persist
+    public abstract Book createBook(final Book book);
 
-    public List<Book> getAllBooks()
-    {
-        CriteriaQuery<Book> cq = entityManager.getCriteriaBuilder().createQuery(Book.class);
-        cq.select(cq.from(Book.class));
-        return entityManager.createQuery(cq).getResultList();
+    @NamedQuery(Book.FIND_ALL)
+    public abstract List<Book> findAllBooks();
+
+    @Find
+    public abstract Book findBook(Long id);
+
+    @NamedQuery(Book.FIND_BY_TITLE)
+    public abstract Book findBook(@QueryParam("title") final String title);
+
+    @Merge
+    public abstract Book updateBook(final Book book);
+
+    @Remove
+    public abstract void removeBook(final Book book);
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        return PersistenceHandler.invoke(em, method, args);
     }
 }

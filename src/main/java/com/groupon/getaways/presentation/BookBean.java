@@ -47,17 +47,15 @@ public class BookBean {
         this.booksAvailable = booksAvailable;
     }
 
-    public String fetchBooks()
-    {
-        booksAvailable=bookService.getAllBooks();
+    public String fetchBooks() {
+        booksAvailable = bookService.findAllBooks();
         return "success";
     }
 
-    public String add()
-    {
+    public String add() {
         Book book = new Book();
         book.setBookTitle(bookTitle);
-        bookService.addBook(book);
+        bookService.createBook(book);
         return "success";
     }
 }

@@ -16,10 +16,23 @@
  */
 package com.groupon.getaways.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Book.FIND_BY_TITLE, query = "SELECT b FROM Book b WHERE b.bookTitle = :title"),
+        @NamedQuery(name = Book.FIND_ALL, query = "SELECT b FROM Book b")
+
+})
 public class Book {
+    public static final String FIND_BY_TITLE = "Book.findByTitle";
+    public static final String FIND_ALL = "Book.findAllBooks";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookId;
