@@ -16,6 +16,12 @@
  */
 package com.groupon.getaways.persistence;
 
+import com.groupon.getaways.annotations.Find;
+import com.groupon.getaways.annotations.Merge;
+import com.groupon.getaways.annotations.NamedQuery;
+import com.groupon.getaways.annotations.Persist;
+import com.groupon.getaways.annotations.QueryParam;
+import com.groupon.getaways.annotations.Remove;
 import com.groupon.getaways.entities.Book;
 
 import javax.ejb.Stateless;
@@ -27,7 +33,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 @Stateless
-public abstract class BookService implements Serializable, InvocationHandler {
+public abstract class BookDbService implements Serializable, InvocationHandler {
 
     @PersistenceContext(unitName = "book-pu")
     private EntityManager em;

@@ -1,4 +1,4 @@
-package com.groupon.getaways.persistence;
+package com.groupon.getaways.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,5 @@ import java.lang.annotation.Target;
 
 @Target(value = ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface NamedQuery {
-    String value();
+public @interface Persist {
 }

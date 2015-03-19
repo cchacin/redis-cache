@@ -52,6 +52,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
         <!-- to test with TomEE and Arquillian
         <dependency>
           <groupId>org.apache.openejb</groupId>

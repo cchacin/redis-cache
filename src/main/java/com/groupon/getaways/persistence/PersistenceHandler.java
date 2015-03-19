@@ -1,6 +1,12 @@
 package com.groupon.getaways.persistence;
 
 
+import com.groupon.getaways.annotations.Find;
+import com.groupon.getaways.annotations.Merge;
+import com.groupon.getaways.annotations.NamedQuery;
+import com.groupon.getaways.annotations.Persist;
+import com.groupon.getaways.annotations.QueryParam;
+import com.groupon.getaways.annotations.Remove;
 import com.groupon.getaways.util.Generics;
 import com.groupon.getaways.util.Parameter;
 import com.groupon.getaways.util.Reflection;

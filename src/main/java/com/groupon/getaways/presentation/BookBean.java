@@ -16,36 +16,25 @@
  */
 package com.groupon.getaways.presentation;
 
-import com.groupon.getaways.persistence.BookService;
+import com.groupon.getaways.persistence.BookDbService;
 import com.groupon.getaways.entities.Book;
+import com.groupon.getaways.persistence.BookRedisService;
+import lombok.Data;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
+@Data
 @Named
 public class BookBean {
 
     @Inject
-    private BookService bookService;
+    private BookDbService bookService;
+    @Inject
+    private BookRedisService bookRedisService;
     private List<Book> booksAvailable;
     private String bookTitle;
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
-    }
-
-    public List<Book> getBooksAvailable() {
-        return booksAvailable;
-    }
-
-    public void setBooksAvailable(List<Book> booksAvailable) {
-        this.booksAvailable = booksAvailable;
-    }
 
     public String fetchBooks() {
         booksAvailable = bookService.findAllBooks();
@@ -55,7 +44,7 @@ public class BookBean {
     public String add() {
         Book book = new Book();
         book.setBookTitle(bookTitle);
-        bookService.createBook(book);
+        bookRedisService.createBook(bookService.createBook(book));
         return "success";
     }
 }

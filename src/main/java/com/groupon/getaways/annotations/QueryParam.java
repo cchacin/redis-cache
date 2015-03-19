@@ -1,11 +1,12 @@
-package com.groupon.getaways.persistence;
+package com.groupon.getaways.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value = ElementType.METHOD)
+@Target(value = ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Merge {
+public @interface QueryParam {
+    String value();
 }
