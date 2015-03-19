@@ -16,7 +16,7 @@
  */
 package com.groupon.getaways.presentation;
 
-import com.groupon.getaways.application.BookService;
+import com.groupon.getaways.persistence.BookService;
 import com.groupon.getaways.entities.Book;
 
 import javax.inject.Inject;

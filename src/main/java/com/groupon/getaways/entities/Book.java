@@ -16,6 +16,8 @@
  */
 package com.groupon.getaways.entities;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +25,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+@Data
 @Entity
 @NamedQueries({
         @NamedQuery(name = Book.FIND_BY_TITLE, query = "SELECT b FROM Book b WHERE b.bookTitle = :title"),
         @NamedQuery(name = Book.FIND_ALL, query = "SELECT b FROM Book b")
-
 })
 public class Book {
     public static final String FIND_BY_TITLE = "Book.findByTitle";
@@ -37,29 +39,5 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookId;
     private String bookTitle;
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookName) {
-        this.bookTitle = bookName;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookId=" + bookId +
-                ", bookTitle='" + bookTitle + '\'' +
-                '}';
-    }
 }
 

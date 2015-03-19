@@ -14,16 +14,9 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-package com.groupon.getaways.application;
+package com.groupon.getaways.persistence;
 
 import com.groupon.getaways.entities.Book;
-import com.groupon.getaways.persistence.Find;
-import com.groupon.getaways.persistence.Merge;
-import com.groupon.getaways.persistence.NamedQuery;
-import com.groupon.getaways.persistence.Persist;
-import com.groupon.getaways.persistence.PersistenceHandler;
-import com.groupon.getaways.persistence.QueryParam;
-import com.groupon.getaways.persistence.Remove;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
